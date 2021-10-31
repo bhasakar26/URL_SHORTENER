@@ -1,0 +1,101 @@
+MongoDB
+  - get MongoDB Client URL
+
+Path to connect
+  - cluster -> collection -> database -> post
+  - code
+    MONGO_CLIENT = os.getenv('MONGO_CLIENT_URL_FROM_ENV')
+    cluster = MongoClient(MONGO_CLIENT)
+    db = cluster["database-name"]
+    collection = db["collection-name"]
+
+post
+  - a key-value pair collection
+  - python dictionary
+  - actual data which is supposed to be inserted
+
+How to insert
+  - collection.insert_one(post)
+  - collection.insert_many(list-of-posts))
+
+How to search
+  - collection.find({"search-parameter": key})
+  - returns a pymongo.cursor.Cursor object
+  - its a list of all the possible results
+  - loop through it for accessing each post
+  - How to search one
+    - collection.find_one({"search-parameter": key})
+    - returns one post
+
+
+- select * from table equivalent
+  - collection.find({})
+  - returns a pymongo.cursor.Cursor object
+  - its a list of all the possible results
+  - loop through it for accessing each post
+
+
+- How to update
+  - collection.update_one({"update-parameter": old-value}, {update-operator: {"update-parameter": new-value}})
+
+
+
+- Update operators
+  - $currentDate - Sets the value of a field to current date, either as a Date or a Timestamp.
+  - $inc - Increments the value of the field by the specified amount.
+  - $min - Only updates the field if the specified value is less than the existing field value.
+  - $max - Only updates the field if the specified value is greater than the existing field value.
+  - $mul - Multiplies the value of the field by the specified amount.
+  - $rename - Renames a field.
+  - $set - Sets the value of a field in a document.
+  - $setOnInsert - Sets the value of a field if an update results in an insert of a document. Has no effect on update operations that modify existing documents.
+  - $unset - Removes the specified field from a document.
+  
+
+- HTTP
+  - client-server
+  - request-response
+  - stateless
+  - for tracking state, use sessions/cookies
+  - application layer protocol
+  - http uses TCP
+
+
+- Authentication
+  - authentication - verifying identity
+    - failed - (401 Unauthorized)
+  - authorization - verifying permissions
+    - failed - (403 Forbidden)
+
+
+- Stateful
+  - session + cookie
+- Stateless
+  - token + JWT/OAuth
+
+
+Session Based Authentication
+  - user sends credentials (Email/Username + Password)
+  - server verifies credentials from DB
+  - server creates a temporary user session
+  - server issues a cookie with session ID
+  - user sends the cookie with each request
+  - server validates it against session store & grants access
+  - when user logs out, sever destroys the session & clears the cookie
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
