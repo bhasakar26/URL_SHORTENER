@@ -1,0 +1,38 @@
+{% if message %}
+<section class="message{% if status %} auth-success-message {% endif %}">
+    <h3 class="message-content">{{ message }}</h3>
+</section>
+{% endif %}
+
+{% if short_url %}
+
+<section class="output">
+    <label>Long URL</label>
+    <input type="text" disabled value="{{ long_url }}">
+    <label>Shortened URL</label>
+    <input type="text" id="short_url" disabled value="https://kata-flask.herokuapp.com/{{ short_url }}" >
+    <section class="copy-success-message">
+        <h3 class="copy-success-message-content"></h3>
+    </section>
+    <button onclick="copyShortUrl()">Copy</button>
+    <a href="/" class="redirect-home">Shorten Another URL!</a>
+</section>
+
+{% else %}
+
+<form class="form" action="/" method="POST">
+    <label for="long_url">Enter Long URL</label>
+    <input type="text" name="long_url" id="long_url" autocomplete="off" placeholder="Long URL">
+    
+    {% if session['user'] %}
+    <p class="custom-slug-message">
+        Want a custom alias? Fill in the field below. <br> Or keep it empty for random alias.
+    </p>
+    <label for="custom_slug">Enter Alias: https://kata-flask.herokuapp.com/</label>
+    <input type="text" name="custom_slug" id="custom_slug" autocomplete="off" placeholder="Custom Alias">
+    {% endif %}
+    <br>
+    <input type="submit" value="Generate Short URL">
+</form>
+
+{% endif %}

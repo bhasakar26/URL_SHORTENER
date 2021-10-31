@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Kata | Profile: {{ user_email }}</title>
+{% endblock %}
+
+{% block body %}
+<section class="user-greeting">
+    Hello {{ user_email }} 
+</section>
+
+{% if message %}
+<section class="message">
+    <h3 class="message-content">{{ message }}</h3>
+</section>
+{% endif %}
+
+<h3>Here's your <span class="kata-greeting">Kata</span> dashboard</h3>
+
+<section class="user-urls-container">
+    {% for x in user_urls %}
+        <section class="user-url">
+            Long URL<span class="user-long-url">{{ x.long_url }}</span>
+            Short URL<span class="user-short-url" >https://kata-flask.herokuapp.com/{{ x.short_url }}</span>
+            Click Count<span class="user-url-click-count">{{ x.click_count }}</span>
+            <input type="text" class="hidden" id="hidden-{{ x.short_url }}" value="https://kata-flask.herokuapp.com/{{ x.short_url }}" class="copy{{ x.short_url }}">
+            <section class="user-copy-success-message message-{{ x.short_url }} ">
+                <h3 class="user-copy-success-message-content message-content-{{ x.short_url }}"></h3>
+            </section>
+            <button class="user-short-url-copy" id="{{ x.short_url }}" onclick="copyShortURLUser(this.id)">Copy Short URL</button>
+        </section>
+    {% endfor %}
+</section>
+
+{% endblock %}

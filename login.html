@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Kata | Login</title>
+{% endblock %}
+
+{% block body %}
+<h2>Login to URL Shortener</h2>
+
+{% if message %}
+<section class="message{% if status %} auth-success-message {% endif %}">
+    <h3 class="message-content">{{ message }}</h3>
+</section>
+{% endif %}
+
+
+<form class="user" action="/login/" method="POST">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Email">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="Password">
+    <input type="submit" value="Login">
+</form>
+{% endblock %}

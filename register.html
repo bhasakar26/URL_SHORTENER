@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Kata | Register</title>
+{% endblock %}
+
+{% block body %}
+<h2>Register to URL Shortener</h2>
+
+{% if message %}
+<section class="message">
+    <h3 class="message-content">{{ message }}</h3>
+</section>
+{% endif %}
+
+<form class="user" action="" method="POST">
+    <label for="email">Email</label>
+    <input type="email" placeholder="Email" name="email" id="email">
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" name="password" id="password">
+    <input type="submit" value="Register">
+</form>
+{% endblock %}
